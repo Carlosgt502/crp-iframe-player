@@ -51,7 +51,7 @@ window.addEventListener('message', e => {
       'playlist': [{
         'title': title,
         'image': thumbnail,
-        'description': descriptio,
+        'description': description,
         'sources': sources,
         'tracks': tracks
 }],
