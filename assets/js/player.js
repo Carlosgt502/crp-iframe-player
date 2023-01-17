@@ -15,7 +15,7 @@ const playerInstance= jwplayer('player_div');
 playerInstance.setup({
 'playlist':[{
 'title':title,
-'image':thumbnail',
+'image':thumbnail,
 'description':description,
 'file':url
     }]
