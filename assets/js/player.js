@@ -6,8 +6,9 @@ const thumbnail = data.thumbnail;
 const description = data.description;
 const userLang = data.userLang;
 const episodeId = data.episodeId;
-const videoConfig = JSON.parse(data.videoConfig);
+const videoConfig = data.videoConfig;
+const streams = videoConfig.streams;
 
-const stream = videoConfig.streams.filter(stream=>stream.hardsub_locale==userLang);
+const stream = streams.filter(stream=>stream.hardsub_locale==userLang);
 console.log(stream)
 });
