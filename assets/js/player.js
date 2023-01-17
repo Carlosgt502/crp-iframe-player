@@ -1,5 +1,10 @@
 window.addEventListener('message', e => {
 
-console.log(e.data);
-
+const data = e.data;
+const title = data.title;
+const thumbnail = data.thumbnail;
+const description = data.description;
+const userLang = data.userLang;
+const episodeId = data.episodeId;
+const videoConfig = data.videoConfig;
 });
