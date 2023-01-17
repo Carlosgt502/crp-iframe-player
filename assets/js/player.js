@@ -4,11 +4,11 @@ console.log(e.data);
 
 const type = e.data.type;
 
-const event {
+const events= {
 'next-episode':nextEpisode
 };
 
-if(!event[type])return;
+if(!events[type])return;
 
 function nextEpisode(){
 console.log('Siguiente Episodio')
