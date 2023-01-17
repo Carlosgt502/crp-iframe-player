@@ -8,7 +8,7 @@ const events= {
 'next-episode':nextEpisode
 };
 
-if(!events[type])return;
+if(!events[type]()) return;
 
 function nextEpisode(){
 console.log('Siguiente Episodio')
