@@ -11,8 +11,8 @@ const videoConfig = JSON.parse(data.videoConfig);
 const stream = videoConfig.streams.filter(stream=>stream.hardsub_locale==userLang);
 const url = stream[0].url;
 
-const PlayerInstance= jwplayer('player_div');
-PlayerInstance.setup({
+const playerInstance= jwplayer('player_div');
+playerInstance.setup({
 'playlist':[{
 'title':title,
 'image':thumbnail',
