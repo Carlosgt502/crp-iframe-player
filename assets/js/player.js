@@ -6,8 +6,10 @@ const thumbnail = data.thumbnail;
 const description = data.description;
 const userLang = data.userLang;
 const episodeId = data.episodeId;
+
 const videoConfig = JSON.parse(data.videoConfig);
-const searchStreamLang = videoConfig.streams.filter(stream=>stream.hardsub_locale==userLang);
+const streamList = videoConfig.streams;
+const searchStreamLang = streamList.filter(stream=>stream.hardsub_locale==userLang);
 const streamLang = searchStreamLang? userLang: '';
 
 for(const stream of streamList){
