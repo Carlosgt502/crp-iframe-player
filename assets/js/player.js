@@ -10,9 +10,11 @@ const episodeId = data.episodeId;
 const videoConfig = JSON.parse(data.videoConfig);
 const streamList = videoConfig.streams;
 const searchStreamLang = streamList.filter(stream=>stream.hardsub_locale==userLang);
+console.log(searchStreamLang)
 const streamLang = searchStreamLang? userLang: '';
-
+console.log(streamLang)
 for(const stream of streamList){
+console.log(stream)
 if(stream.hardsub_locale == streamLang){
 const url = stream.url;
 startPlayer(url);
