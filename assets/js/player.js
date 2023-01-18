@@ -7,10 +7,18 @@ const description = data.description;
 const userLang = data.userLang;
 const episodeId = data.episodeId;
 const videoConfig = JSON.parse(data.videoConfig);
-console.log(videoConfig)
-const stream = videoConfig.streams.filter(stream=>stream.hardsub_locale==userLang);
-const url = stream[0].url;
+const searchStreamLang = videoConfig.streams.filter(stream=>stream.hardsub_locale==userLang);
+const streamLang = searchStreamLang? userLang: '';
 
+for(const stream of streamList){
+if(stream.hardsub_locale == streamLang){
+const url = stream.url;
+startPlayer(url);
+break;
+}
+}
+
+function startPlayer(url){
 const playerInstance= jwplayer('player_div');
 playerInstance.setup({
 'playlist':[{
@@ -29,6 +37,7 @@ if(time)document.getElementsByTagName('video')[0].currentTime=time;
 })
 .on('time',(e)=>{
 const position = e.position;
-localStorage.setItem(videoId,position)
+localStorage.setItem(episodeId,position)
 })
+}
 });
