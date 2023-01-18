@@ -7,7 +7,7 @@ const description = data.description;
 const userLang = data.userLang;
 const episodeId = data.episodeId;
 const videoConfig = JSON.parse(data.videoConfig);
-
+console.log(videoConfig)
 const stream = videoConfig.streams.filter(stream=>stream.hardsub_locale==userLang);
 const url = stream[0].url;
 
