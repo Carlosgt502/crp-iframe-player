@@ -9,7 +9,7 @@ const episodeId = data.episodeId;
 
 const videoConfig = JSON.parse(data.videoConfig);
 const streamList = videoConfig.streams;
-const searchStreamLang = streamList.filter(stream=>stream.hardsub_locale==userLang);
+const searchStreamLang = streamList.find(stream=>stream.hardsub_locale==userLang);
 console.log(searchStreamLang)
 const streamLang = searchStreamLang? userLang: '';
 console.log(streamLang)
