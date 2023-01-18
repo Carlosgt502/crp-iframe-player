@@ -23,9 +23,12 @@ playerInstance.setup({
 .on('ready',()=>{
 const container = document.querySelector('.loading_container');
 container.style.display='none';
+
+const time = localStorage.getItem(videoId);
+if(time)document.getElementsByTagName('video')[0].currentTime=time;
 })
 .on('time',(e)=>{
-console.log(e)
-const time = e;
+const position = e.position;
+localStorage.setItem(videoId,position)
 })
 });
