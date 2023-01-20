@@ -13,11 +13,11 @@ window.addEventListener('message', ev => {
 
     if (!streamList) return displayError();
 
+    const userLang = data.userLang;
+
     const searchStreamLang = streamList.find(stream => stream.hardsub_locale == userLang);
 
     const streamLang = searchStreamLang ? userLang : '';
-
-    const userLang = data.userLang;
 
     const title = data.title;
 
