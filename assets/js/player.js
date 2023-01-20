@@ -1,85 +1,74 @@
-window.addEventListener('message', e => {
+window.addEventListener('message', ev => {
+    const loading = document.querySelector('.loading')
 
-    const data = e.data;
+    if (loading.style.display == 'none') loading.style.display = 'flex';
 
-    const title = data.title;
+    const data = ev.data;
 
-    const thumbnail = data.thumbnail;
+    console.log(data);
 
-    const description = data.description;
-
-    const userLang = data.userLang;
-
-    const episodeId = data.episodeId;
-
-    const videoConfig = JSON.parse(data.videoConfig);
+    const videoConfig = ev.data.videoConfig;
 
     const streamList = videoConfig.streams;
 
-    const searchStreamLang = streamList.find(stream => stream.hardsub_locale == userLang);
+    if (!streamList) return displayError();
 
-    console.log(searchStreamLang)
+    const searchStreamLang = streamList.find(stream => stream.hardsub_locale == userLang);
 
     const streamLang = searchStreamLang ? userLang : '';
 
-    console.log(streamLang)
+    const title = data.title;
+
+    const thumbnail = data.thumbnail
+
+    const description = data.description;
 
     for (const stream of streamList) {
-
-        console.log(stream)
-
         if (stream.hardsub_locale == streamLang) {
-
             const url = stream.url;
-
             startPlayer(url);
-
             break;
-
         }
-
     }
 
-    function startPlayer(url) {
-
-        const playerInstance = jwplayer('player_div');
-
+    function startPlayer() {
+        const playerInstance = jwplayer('player')
         playerInstance.setup({
-
-                'playlist': [{
-
-                    'title': title,
-
-                    'image': thumbnail,
-
-                    'description': description,
-
-                    'file': url
-
+            'playlist': [{
+                'sources': [{
+                    'file': 'xd.mp4',
+                    'type': 'm3u8'
                 }]
+            }]
+        });
 
-            })
+        playerInstance.on('ready', ev => {
+            console.log(ev)
 
-            .on('ready', () => {
+            loading.style.display = 'none';
+        })
 
-                const container = document.querySelector('.loading_container');
+        playerInstance.on('time', ev => {
+            console.log(ev)
+        })
 
-                container.style.display = 'none';
+        playerInstance.on('complete', ev => {
 
-                const time = localStorage.getItem(episodeId);
+        })
 
-                if (time) document.getElementsByTagName('video')[0].currentTime = time;
+        playerInstance.on('error', ev => {
+            console.log(ev)
+        })
 
-            })
-
-            .on('time', (e) => {
-
-                const position = e.position;
-
-                localStorage.setItem(episodeId, position)
-
-            })
-
+        playerInstance.on('setupError', ev => {
+            console.log(ev);
+        })
     }
 
+    function displayError() {
+        const playerError = document.querySelector('.player-error');
+        playerError.style.display = 'flex';
+
+        loading.style.display = 'none';
+    }
 });
