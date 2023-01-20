@@ -33,14 +33,14 @@ window.addEventListener('message', ev => {
         }
     }
 
-    function startPlayer() {
+    function startPlayer(url) {
         const playerInstance = jwplayer('player')
         playerInstance.setup({
             'playlist': [{
-                'sources': [{
-                    'file': 'xd.mp4',
-                    'type': 'm3u8'
-                }]
+                'title': title,
+                'image': thumbnail,
+                'description': description,
+                'file': url
             }]
         });
 
