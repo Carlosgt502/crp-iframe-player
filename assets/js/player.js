@@ -17,6 +17,8 @@ window.addEventListener('message', ev => {
 
     const streamLang = searchStreamLang ? userLang : '';
 
+    const userLang = data.userLang;
+
     const title = data.title;
 
     const thumbnail = data.thumbnail
