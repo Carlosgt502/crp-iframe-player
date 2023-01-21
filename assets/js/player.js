@@ -1,7 +1,11 @@
 window.addEventListener('message', ev => {
-    const loading = document.querySelector('.loading')
+    const loading = document.querySelector('.loading');
+
+    const playerError = document.querySelector('.player-error');
 
     if (loading.style.display == 'none') loading.style.display = 'flex';
+
+    if(playerError.style.display == 'flex') playerError.style.display = 'none';
 
     const data = ev.data;
 
@@ -21,7 +25,7 @@ window.addEventListener('message', ev => {
 
     const title = data.title;
 
-    const thumbnail = data.thumbnail
+    const image = data.image
 
     const description = data.description;
 
@@ -38,7 +42,7 @@ window.addEventListener('message', ev => {
         playerInstance.setup({
             'playlist': [{
                 'title': title,
-                'image': thumbnail,
+                'image': image,
                 'description': description,
                 'file': url
             }]
@@ -68,7 +72,6 @@ window.addEventListener('message', ev => {
     }
 
     function displayError() {
-        const playerError = document.querySelector('.player-error');
         playerError.style.display = 'flex';
 
         loading.style.display = 'none';
