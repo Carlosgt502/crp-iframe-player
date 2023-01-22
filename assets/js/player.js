@@ -53,10 +53,11 @@ window.addEventListener('message', ev => {
     })
 
     playerInstance.on('play', ev => {
-    if (!playerInstance.getFullscreen()) {
-    playerInstance.setFullscreen();
-    playerInstance.seek(localStorage.getItem(videoId));
-    }
+      if (!playerInstance.getFullscreen()) {
+        playerInstance.setFullscreen();
+        playerInstance.seek(localStorage.getItem(videoId));
+      }
+    })
 
     playerInstance.on('time', ev => {
       localStorage.setItem(videoId, ev.currentTime);
