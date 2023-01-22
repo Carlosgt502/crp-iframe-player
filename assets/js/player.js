@@ -49,7 +49,7 @@ window.addEventListener('message', ev => {
     });
 
     playerInstance.on('ready', ev => {
-      if (localStorage.getItem(videoId)) playerInstance.seek(localStorage.getItem(videoId));
+      if (localStorage.getItem(videoId)) document.getElementsByTagName('video')[0].currentTime = localStorage.getItem(videoId);
 
       loading.style.display = 'none';
     })
