@@ -28,6 +28,8 @@ window.addEventListener('message', ev => {
     const image = data.image
 
     const description = data.description;
+    
+    const videoId = data.videoId;
 
     for (const stream of streamList) {
         if (stream.hardsub_locale == streamLang) {
@@ -49,13 +51,15 @@ window.addEventListener('message', ev => {
         });
 
         playerInstance.on('ready', ev => {
-            console.log(ev)
+            console.log(jwplayer)
 
             loading.style.display = 'none';
         })
 
         playerInstance.on('time', ev => {
-            console.log(ev)
+          const currentTime = ev.currentTime;
+            
+          localStorage.setItem(videoId,currentTime);
         })
 
         playerInstance.on('complete', ev => {
