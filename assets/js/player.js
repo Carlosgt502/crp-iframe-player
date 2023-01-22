@@ -55,9 +55,7 @@ window.addEventListener('message', ev => {
     })
 
     playerInstance.on('time', ev => {
-      const currentTime = ev.currentTime;
-
-      localStorage.setItem(videoId, currentTime);
+      localStorage.setItem(videoId, ev.currentTime);
     })
 
     playerInstance.on('complete', ev => {
