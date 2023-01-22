@@ -9,8 +9,6 @@ window.addEventListener('message', ev => {
 
   const data = ev.data;
 
-  console.log(data);
-
   const videoConfig = ev.data.videoConfig;
 
   const streamList = videoConfig.streams;
