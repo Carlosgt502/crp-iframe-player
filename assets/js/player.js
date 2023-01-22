@@ -51,7 +51,7 @@ window.addEventListener('message', ev => {
         });
 
         playerInstance.on('ready', ev => {
-            console.log(jwplayer)
+            console.log(playerInstance)
 
             loading.style.display = 'none';
         })
