@@ -49,10 +49,14 @@ window.addEventListener('message', ev => {
     });
 
     playerInstance.on('ready', ev => {
-      if (localStorage.getItem(videoId)) document.getElementsByTagName('video')[0].currentTime = localStorage.getItem(videoId);
-
       loading.style.display = 'none';
     })
+
+    playerInstance.on('play', ev => {
+    if (!playerInstance.getFullscreen()) {
+    playerInstance.setFullscreen();
+    playerInstance.seek(localStorage.getItem(videoId));
+    }
 
     playerInstance.on('time', ev => {
       localStorage.setItem(videoId, ev.currentTime);
